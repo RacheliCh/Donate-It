@@ -4,9 +4,10 @@ from firebase_admin import firestore
 
 def firestoreInitialize():
     global db
-    cred = firebase_admin.credentials.Certificate("/home/pi/Documents/project/Donate-It/DonateItServiceAccountKey.json") # /home/pi/Documents/project/Donate-It/
+    cred = firebase_admin.credentials.Certificate("/home/pi/Documents/project/Donate-It/DonateItServiceAccountKey.json")
     firebase_admin.initialize_app(cred)
     db = firestore.client()
 
-def firestoreAddDocument(doc):
-    db.collection('items').add(doc)
+def firestoreAddDocument(doc, doc_id):
+    print("adding doc to collection")
+    db.collection('items').document(doc_id).set(doc)
