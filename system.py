@@ -18,6 +18,11 @@ def set_system_time():
     times = times.strftime("%H:%M:%S")
     os.system("sudo date -s \'" + year + "-" + month + "-" + day + " " + times + "\'") 
 
+def systemInitialize():
+    set_system_time()
+    os.system("export DISPLAY=\":0\"") # not working, still need to run manualy in terminal
+    os.system("xdotool mousemove 800 600")
+
 def cameraInitialize():
     camera = PiCamera()
     camera.framerate=30
