@@ -1,4 +1,3 @@
-#import PySimpleGUI as sg
 from system import *
 from gui_utils import *
 from firebase_storage import *
@@ -8,10 +7,11 @@ from firebase_firestore import *
 systemInitialize()
 storageInitialize()
 firestoreInitialize()
-my_camera = cameraInitialize()
+my_camera = systemCameraInitialize()
 
-window_fields = make_window_fields()
-window_take_picture = make_window_take_picture()
+window_fields = guiMakeWindowFields()
+window_approve_picture = guiMakeWindowApprovePicture()
+window_take_picture = guiMakeWindowTakePicture()
 
 while True:
 
@@ -23,23 +23,42 @@ while True:
     # first window
     elif window == window_take_picture:
         if event == 'Take Picture':
-            id , img_url = gui_take_pic(my_camera)
+            id = guiTakePicture(my_camera)
+            image_name = id + ".jpg"
+            guiUpdatePicToDisplay(window_approve_picture, image_name)
             # switch windows
+            window_approve_picture.un_hide()
             window_take_picture.hide()
-            window_fields.un_hide()
             # move cursor
             os.system("xdotool mousemove 800 600") 
 
     # second window
+    elif window == window_approve_picture:
+        if event == 'Confirm':
+            img_url = guiUploadPicture(id)
+            # switch windows
+            window_fields.un_hide()
+            window_approve_picture.hide()
+            # move cursor
+            os.system("xdotool mousemove 800 600")
+        elif event == 'Try Again':
+            systemRemoveFile(image_name)
+            # switch windows
+            window_take_picture.un_hide()
+            window_approve_picture.hide()
+            # move cursor
+            os.system("xdotool mousemove 800 600")
+    
+    # third window
     elif window == window_fields:
         if event == 'Clear':
-            gui_clear_input(window_fields, values)
+            guiClearInput(window_fields, values)
             # move cursor
             os.system("xdotool mousemove 800 600") 
-        if event == 'Submit':
+        elif event == 'Submit':
             checked_values = [k for k,v in values.items() if v == True]
             if len(checked_values) != num_of_fields:
-                sg.popup('please choose all fields')
+                sg.popup('please choose all fields', font=("calibri", 20), title = ' ')
             else:
                 print(checked_values)
                 data = {
@@ -51,16 +70,16 @@ while True:
                 }
                 print(data)
                 firestoreAddDocument(data, id)
-                sg.popup('Data saved!')
+                sg.popup('Data saved!', font=("calibri", 20), title = ' ')
                 
-                message_to_print = "item id: " + id + "\n\n" + checked_values[0] + "\n" + checked_values[1] + "\n" + checked_values[2] + "\n\n" + checked_values[3] + " NIS" 
+                message_to_print = "ITEM ID: " + id + "\n\n" + checked_values[0] + "\n" + checked_values[1] + "\n" + checked_values[2] + "\n\n" + checked_values[3] + " NIS" 
                 printReceipt(message_to_print)
                 
-                gui_clear_input(window_fields, values)
+                guiClearInput(window_fields, values)
                 
-                # switch windows 
+                # switch windows
+                window_take_picture.un_hide() 
                 window_fields.hide()
-                window_take_picture.un_hide()
             
             # move cursor
             os.system("xdotool mousemove 800 600") 

@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import os
 from firebase_storage import *
 
-def set_system_time():
+def systemSetTime():
     # TODO: add exception if no wifi
     res = urlopen('http://just-the-time.appspot.com/')
     result = res.read().strip()
@@ -19,18 +19,19 @@ def set_system_time():
     os.system("sudo date -s \'" + year + "-" + month + "-" + day + " " + times + "\'") 
 
 def systemInitialize():
-    set_system_time()
-    # os.system("export DISPLAY=\":0\"") # not working, still need to run manualy in terminal !!!!!!!
+    systemSetTime()
+    os.environ['DISPLAY']=':0.0'
+    os.system("sudo chmod 777 /dev/usb/lp0")
     os.system("xdotool mousemove 800 600")
 
-def cameraInitialize():
+def systemCameraInitialize():
     camera = PiCamera()
     camera.framerate=30
     camera.resolution=(1080,1080)
     return camera
 
-# capture picture upload to firebse and return the url
-def takePictureAndUpload(camera):
+# capture picture
+def systemTakePicture(camera):
     camera.start_preview()
     sleep(5)
     camera.stop_preview()
@@ -40,15 +41,11 @@ def takePictureAndUpload(camera):
     img_name = dt + ".jpg"
     camera.capture(img_name)
     print(img_name+" saved")
+    return dt
 
-    storageUploadImage(img_name)
-
-    print("Image sent")
-    os.remove(img_name)
+def systemRemoveFile(file_name):
+    os.remove(file_name)
     print("File Removed")
-
-    img_url = storageGetImageUrl(img_name)
-    return dt , img_url
 
 def printReceipt(message):
     print("printing: " + message)
