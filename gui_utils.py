@@ -12,8 +12,9 @@ sg.theme('LightPurple')
 num_of_fields = 4
 
 layout_take_picture = [
-    [sg.Button('Take Picture', size=(20,2), font=("calibri", 58))],
-    [sg.Exit(size=(20,2), font=("calibri", 58))]
+    [sg.Button('Show Preview', size=(20,2), font=("calibri", 35))],
+    [sg.Button('Take Picture', size=(20,2), font=("calibri", 35))],
+    [sg.Exit(size=(20,2), font=("calibri", 35))]
 ]
 
 layout_approve_picture = [

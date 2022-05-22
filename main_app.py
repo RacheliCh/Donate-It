@@ -22,7 +22,11 @@ while True:
    
     # first window
     elif window == window_take_picture:
-        if event == 'Take Picture':
+        if event == 'Show Preview':
+            # move cursor
+            os.system("xdotool mousemove 800 600") 
+            systemCameraShowPreview(my_camera)
+        elif event == 'Take Picture':
             id = guiTakePicture(my_camera)
             image_name = id + ".jpg"
             guiUpdatePicToDisplay(window_approve_picture, image_name)
@@ -73,7 +77,7 @@ while True:
                 sg.popup('Data saved!', font=("calibri", 20), title = ' ')
                 
                 message_to_print = "ITEM ID: " + id + "\n\n" + checked_values[0] + "\n" + checked_values[1] + "\n" + checked_values[2] + "\n\n" + checked_values[3] + " NIS" 
-                printReceipt(message_to_print)
+                systemPrintReceipt(message_to_print)
                 
                 guiClearInput(window_fields, values)
                 

@@ -30,11 +30,13 @@ def systemCameraInitialize():
     camera.resolution=(1080,1080)
     return camera
 
-# capture picture
-def systemTakePicture(camera):
+def systemCameraShowPreview(camera):
     camera.start_preview()
     sleep(5)
     camera.stop_preview()
+
+# capture picture
+def systemTakePicture(camera):
     print("pushed")
     now = datetime.now()
     dt = now.strftime("%d%m%y%H%M%S")
@@ -47,6 +49,6 @@ def systemRemoveFile(file_name):
     os.remove(file_name)
     print("File Removed")
 
-def printReceipt(message):
+def systemPrintReceipt(message):
     print("printing: " + message)
     os.system("echo \"" + message + "\n\n\n\" > /dev/usb/lp0")
