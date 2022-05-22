@@ -20,7 +20,7 @@ def set_system_time():
 
 def systemInitialize():
     set_system_time()
-    os.system("export DISPLAY=\":0\"") # not working, still need to run manualy in terminal
+    # os.system("export DISPLAY=\":0\"") # not working, still need to run manualy in terminal !!!!!!!
     os.system("xdotool mousemove 800 600")
 
 def cameraInitialize():
@@ -49,3 +49,7 @@ def takePictureAndUpload(camera):
 
     img_url = storageGetImageUrl(img_name)
     return dt , img_url
+
+def printReceipt(message):
+    print("printing: " + message)
+    os.system("echo \"" + message + "\n\n\n\" > /dev/usb/lp0")

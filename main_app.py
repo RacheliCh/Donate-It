@@ -23,7 +23,6 @@ while True:
     # first window
     elif window == window_take_picture:
         if event == 'Take Picture':
-            print("1")
             id , img_url = gui_take_pic(my_camera)
             # switch windows
             window_take_picture.hide()
@@ -53,10 +52,16 @@ while True:
                 print(data)
                 firestoreAddDocument(data, id)
                 sg.popup('Data saved!')
+                
+                message_to_print = "item id: " + id + "\n\n" + checked_values[0] + "\n" + checked_values[1] + "\n" + checked_values[2] + "\n\n" + checked_values[3] + " NIS" 
+                printReceipt(message_to_print)
+                
                 gui_clear_input(window_fields, values)
+                
                 # switch windows 
                 window_fields.hide()
                 window_take_picture.un_hide()
+            
             # move cursor
             os.system("xdotool mousemove 800 600") 
 
