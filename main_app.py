@@ -69,32 +69,36 @@ while True:
                 data["_id"] = id
                 all_info = ""
                 search_info = ""
-                i = 0
-                for FIELD_NAME in yaml_data.keys():
+                message_to_print = "~~~~~~~~~~ DONATE-IT ~~~~~~~~~~" + "\n\n" + "ITEM ID: " + id + "\n\n"
+                
+                for i, FIELD_NAME in enumerate(yaml_data.keys()):
                     data[FIELD_NAME] = checked_values[i]
-                    if FIELD_NAME != "Type":
-                        all_info += str(checked_values[i])
+                    message_to_print += str(checked_values[i])
+                    if FIELD_NAME == "Type":
+                        search_info += (str(checked_values[i]) + " ")
+                        message_to_print += "\n"
+                        continue
+                    all_info += str(checked_values[i])
                     if FIELD_NAME == "Price":
                         all_info += "₪"
+                        message_to_print += " NIS"
                     all_info += ", "
                     search_info += (str(checked_values[i]) + " ")
-                    i+=1
-                all_info[:-2]
+                    message_to_print += "\n"
+
+                all_info = all_info[:-2]
                 all_info += ("\n" + id)
+                search_info += id
+                message_to_print += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
                 data["Image"] = img_url
                 data["all_info"] = all_info
                 data["search_info"] = search_info
-                print(data)
-                firestoreAddDocument(data, id)
-                sg.popup('Data saved!', font=('calibri', 20), title = ' ')
                 
-                message_to_print = "ITEM ID: " + id + "\n\n"
-                i = 0
-                for FIELD_NAME in data.keys():
-                    message_to_print += str(checked_values[i])
-                    if FIELD_NAME == 'Price':
-                        message_to_print += " NIS"
-                    message_to_print += "\n"
+                firestoreAddDocument(data, id)
+
+                sg.popup('Data saved!', font=('calibri', 20), title = ' ')
+
                 systemPrintReceipt(message_to_print)
                 
                 guiClearInput(window_fields, values)
