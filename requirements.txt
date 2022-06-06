@@ -1,0 +1,8 @@
+google-cloud-firestore
+firebase-admin
+picamera
+pyrebase
+PySimpleGui
+PySimpleGUI Pillow 
+pyyaml
+pyinstaller

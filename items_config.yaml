@@ -1,0 +1,34 @@
+# YAML Document starts with ---
+# Comments start with #
+---
+Type: # do not change
+  - SHIRT
+  - PANTS
+  - SKIRT
+  - JACKET
+
+Size:
+  - XS
+  - S
+  - M
+  - L
+  - XL
+
+Color:
+  - RED
+  - BLACK
+  - BLUE
+  - WHITE
+  - MULTICOLOR
+
+Fabric:
+  - COTTON
+  - POLYESTER
+
+Price: # do not change
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+

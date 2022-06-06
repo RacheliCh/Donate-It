@@ -62,21 +62,39 @@ while True:
         elif event == 'Submit':
             checked_values = [k for k,v in values.items() if v == True]
             if len(checked_values) != num_of_fields:
-                sg.popup('please choose all fields', font=("calibri", 20), title = ' ')
+                sg.popup('please choose all fields', font=('calibri', 20), title = ' ')
             else:
                 print(checked_values)
-                data = {
-                    'type': checked_values[0],
-                    'size': checked_values[1],
-                    'color': checked_values[2],
-                    'price': checked_values[3],
-                    'image': img_url
-                }
+                data = {}
+                data["_id"] = id
+                all_info = ""
+                search_info = ""
+                i = 0
+                for FIELD_NAME in yaml_data.keys():
+                    data[FIELD_NAME] = checked_values[i]
+                    if FIELD_NAME != "Type":
+                        all_info += str(checked_values[i])
+                    if FIELD_NAME == "Price":
+                        all_info += "₪"
+                    all_info += ", "
+                    search_info += (str(checked_values[i]) + " ")
+                    i+=1
+                all_info[:-2]
+                all_info += ("\n" + id)
+                data["Image"] = img_url
+                data["all_info"] = all_info
+                data["search_info"] = search_info
                 print(data)
                 firestoreAddDocument(data, id)
-                sg.popup('Data saved!', font=("calibri", 20), title = ' ')
+                sg.popup('Data saved!', font=('calibri', 20), title = ' ')
                 
-                message_to_print = "ITEM ID: " + id + "\n\n" + checked_values[0] + "\n" + checked_values[1] + "\n" + checked_values[2] + "\n\n" + checked_values[3] + " NIS" 
+                message_to_print = "ITEM ID: " + id + "\n\n"
+                i = 0
+                for FIELD_NAME in data.keys():
+                    message_to_print += str(checked_values[i])
+                    if FIELD_NAME == 'Price':
+                        message_to_print += " NIS"
+                    message_to_print += "\n"
                 systemPrintReceipt(message_to_print)
                 
                 guiClearInput(window_fields, values)
