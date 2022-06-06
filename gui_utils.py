@@ -43,8 +43,7 @@ fields_col = [
 
 layout_fields = [
     [sg.Column(fields_col, scrollable=True, size=(800, 330))],
-    [sg.Submit(font=('calibri', 20)), sg.Button(
-      'Clear', font=('calibri', 20)), sg.Exit(font=('calibri', 20))]
+    [sg.Submit(font=('calibri', 20)), sg.Button('Clear', font=('calibri', 20))]
 ]
 
 ### gui functions ###
@@ -67,13 +66,11 @@ def guiClearInput(window, values):
 
 
 def guiTakePicture(my_camera):
-    print('take pic')
     id = systemTakePicture(my_camera)
     return id
 
+
 # update the image displayed in the window
-
-
 def guiUpdatePicToDisplay(window, image_name):
     image = Image.open(image_name)
     image.thumbnail((300, 300))
@@ -81,14 +78,12 @@ def guiUpdatePicToDisplay(window, image_name):
     image.save(bio, format="PNG")
     window["IMAGE"].update(data=bio.getvalue())
 
+
 # upload to firebse and return the url
-
-
 def guiUploadPicture(id):
     img_name = id + ".jpg"
     storageUploadImage(img_name)
 
-    print("Image sent")
     systemRemoveFile(img_name)
 
     img_url = storageGetImageUrl(img_name)

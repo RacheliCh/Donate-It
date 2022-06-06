@@ -9,5 +9,4 @@ def firestoreInitialize():
     db = firestore.client()
 
 def firestoreAddDocument(doc, doc_id):
-    print("adding doc to collection")
     db.collection('items').document(doc_id).set(doc)

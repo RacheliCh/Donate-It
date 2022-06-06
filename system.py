@@ -37,18 +37,14 @@ def systemCameraShowPreview(camera):
 
 # capture picture
 def systemTakePicture(camera):
-    print("pushed")
     now = datetime.now()
     dt = now.strftime("%d%m%y%H%M%S")
     img_name = dt + ".jpg"
     camera.capture(img_name)
-    print(img_name+" saved")
     return dt
 
 def systemRemoveFile(file_name):
     os.remove(file_name)
-    print("File Removed")
 
 def systemPrintReceipt(message):
-    print("printing: " + message)
     os.system("echo \"" + message + "\n\n\n\" > /dev/usb/lp0")

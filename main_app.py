@@ -9,15 +9,18 @@ storageInitialize()
 firestoreInitialize()
 my_camera = systemCameraInitialize()
 
+# create all gui windows
 window_fields = guiMakeWindowFields()
 window_approve_picture = guiMakeWindowApprovePicture()
 window_take_picture = guiMakeWindowTakePicture()
+
 
 while True:
 
     window, event, values = sg.read_all_windows()
 
     if event == sg.WIN_CLOSED or event == 'Exit':
+        # close app
         break
    
     # first window
@@ -64,8 +67,7 @@ while True:
             if len(checked_values) != num_of_fields:
                 sg.popup('please choose all fields', font=('calibri', 20), title = ' ')
             else:
-                print(checked_values)
-                data = {}
+                data = {} # dictionary to upload to firestore
                 data["_id"] = id
                 all_info = ""
                 search_info = ""
@@ -114,5 +116,3 @@ window_take_picture.close()
 window_fields.close()
 
 my_camera.close()
-
-print("done")
