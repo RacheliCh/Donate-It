@@ -1,7 +1,7 @@
 # YAML Document starts with ---
 # Comments start with #
 ---
-Type: # do not change
+Type: # do not change the field name
   - SHIRT
   - PANTS
   - SKIRT
@@ -25,7 +25,7 @@ Fabric:
   - COTTON
   - POLYESTER
 
-Price: # do not change
+Price: # do not change the field name
   - 10
   - 20
   - 30

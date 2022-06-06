@@ -11,7 +11,6 @@ from yaml.loader import SafeLoader
 # Open the yaml file and load the data
 with open('items_config.yaml', 'r') as file:
     yaml_data = yaml.safe_load(file)
-    print(yaml_data)
 
 ### gui layouts ###
 
@@ -37,42 +36,16 @@ for FIELD_NAME in yaml_data.keys():
     for VALUE in yaml_data[FIELD_NAME]:
         field_row_list.append(sg.Radio(VALUE, 'RADIO_'+FIELD_NAME, default=False, key=VALUE, font=('calibri', 20)))
     fields_layout_list.append([*field_row_list])
-        
+
+fields_col = [
+    *fields_layout_list
+]
+
 layout_fields = [
-    *fields_layout_list,
+    [sg.Column(fields_col, scrollable=True, size=(800, 330))],
     [sg.Submit(font=('calibri', 20)), sg.Button(
       'Clear', font=('calibri', 20)), sg.Exit(font=('calibri', 20))]
 ]
-
-# layout_fields = [
-#     [sg.Text('Type', size=(15, 1), font=("calibri", 20)),
-#         sg.Radio('SHIRT', "RADIO_TYPE", default=False,
-#                  key='SHIRT', font=("calibri", 20)),
-#         sg.Radio('SKIRT', "RADIO_TYPE", default=False,
-#                  key='SKIRT', font=("calibri", 20)),
-#         sg.Radio('PANTS', "RADIO_TYPE", default=False, key='PANTS', font=("calibri", 20))],
-#     [sg.Text('Size', size=(15, 1), font=("calibri", 20)),
-#         sg.Radio('S', "RADIO_SIZE", default=False,
-#                  key='S', font=("calibri", 20)),
-#         sg.Radio('M', "RADIO_SIZE", default=False,
-#                  key='M', font=("calibri", 20)),
-#         sg.Radio('L', "RADIO_SIZE", default=False, key='L', font=("calibri", 20))],
-#     [sg.Text('Color', size=(15, 1), font=("calibri", 20)),
-#         sg.Radio('RED', "RADIO_COLOR", default=False,
-#                  key='RED', font=("calibri", 20)),
-#         sg.Radio('GREEN', "RADIO_COLOR", default=False,
-#                  key='GREEN', font=("calibri", 20)),
-#         sg.Radio('BLUE', "RADIO_COLOR", default=False, key='BLUE', font=("calibri", 20))],
-#     [sg.Text('Price', size=(15, 1), font=("calibri", 20)),
-#         sg.Radio('10', "RADIO_PRICE", default=False,
-#                  key='10', font=("calibri", 20)),
-#         sg.Radio('20', "RADIO_PRICE", default=False,
-#                  key='20', font=("calibri", 20)),
-#         sg.Radio('30', "RADIO_PRICE", default=False, key='30', font=("calibri", 20))],
-#     [sg.Submit(font=("calibri", 20)), sg.Button(
-#         'Clear', font=("calibri", 20)), sg.Exit(font=("calibri", 20))]
-# ]
-
 
 ### gui functions ###
 
