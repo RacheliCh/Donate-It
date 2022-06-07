@@ -71,8 +71,8 @@ while True:
                 data["_id"] = id
                 all_info = ""
                 search_info = ""
-                message_to_print = "~~~~~~~~~~ DONATE-IT ~~~~~~~~~~" + "\n\n" + "ITEM ID: " + id + "\n\n"
-                
+                message_to_print = ""
+
                 for i, FIELD_NAME in enumerate(yaml_data.keys()):
                     data[FIELD_NAME] = checked_values[i]
                     message_to_print += str(checked_values[i])
@@ -91,7 +91,6 @@ while True:
                 all_info = all_info[:-2]
                 all_info += ("\n" + id)
                 search_info += id
-                message_to_print += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
                 data["Image"] = img_url
                 data["all_info"] = all_info
@@ -101,7 +100,7 @@ while True:
 
                 sg.popup('Data saved!', font=('calibri', 20), title = ' ')
 
-                systemPrintReceipt(message_to_print)
+                systemPrintLabel(id, message_to_print)
                 
                 guiClearInput(window_fields, values)
                 
@@ -116,3 +115,5 @@ window_take_picture.close()
 window_fields.close()
 
 my_camera.close()
+
+systemPowerOff()
