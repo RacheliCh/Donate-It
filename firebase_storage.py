@@ -12,7 +12,7 @@ firebaseConfig = {
 }
 
 def storageInitialize():
-    global firebase
+    global firebase 
     global storage
     firebase = pyrebase.initialize_app(firebaseConfig)
     storage = firebase.storage()
@@ -22,5 +22,4 @@ def storageUploadImage(img_name):
 
 def storageGetImageUrl(img_name):
     image_url = storage.child(img_name).get_url(None)
-    print(image_url)
     return image_url
