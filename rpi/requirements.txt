@@ -3,7 +3,6 @@ firebase-admin
 picamera
 pyrebase
 PySimpleGui
-PySimpleGUI Pillow 
 pyyaml
 python-escpos
 pyinstaller
