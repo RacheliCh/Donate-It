@@ -7,7 +7,8 @@ Secondhand Clothing – Made Easy
 This project aims to make donating and shopping for secondhand clothes easier.\
 After taking a picture of an item using a special stand, it will be automatically uploaded to an [online clothing catalog](https://donateit100.wixsite.com/donate-it).\
 The stand includes a touch screen and is not PC-based, so it simple to use by everyone.\
-It is possible to customimze the items' description fields - see instructions below.   
+It is possible to customimze items' description fields - see instructions below.
+This project uses Google Cloud Firebase Database to store item images and information about it. The RPi uploads the image to Firebase Storage and uploads the information to Firebase Firestore. The website loads the images and the information from Firebase to it's own database and displays it in the store gallery.
 
 ## Hardware
 ### What You'll Need
@@ -32,16 +33,17 @@ It is possible to customimze the items' description fields - see instructions be
    Make sure to give it the required permissions: `sudo chmod 777 /dev/usb/lp0`
 
 ## How To Run The App
-1. Clone this project to a the local path `/home/pi/Documents/project/Donate-It` on the Raspberry Pi.
+1. Download the `main_app` file (not main_app.py) in `rpi` folder.
 2. run:
     ```
     chmod +777 main_app
-    /home/pi/Documents/project/Donate-It/rpi/main_app
+    <path_to_the_file>/main_app
     ```
 
-## Customize The Items Fields
-You can costumize the items fields as you wish. In order to do that follow the next steps:
-1. Install the python requirements. To do so run the following:
+## Customize Items' Description Fields
+You can costumize items' description fields as you wish. In order to do that follow the next steps:
+1. Clone this project to a the local path /home/pi/Documents/project/Donate-It on the Raspberry Pi.
+2. Install the python requirements. To do so run the following:
     ```
     pip install -r requirements.txt
     ```
@@ -51,9 +53,9 @@ You can costumize the items fields as you wish. In order to do that follow the n
     virtualenv <name>
     source <name>/bin/activate
     ```
-2. Change the `items_config.yaml` file as you wish.\
+3. Change the `items_config.yaml` file as you wish.\
     ***Note:*** keep the files structure as is and do not change the `Type` and `Price` fields names.
-3. Create a new executable file and execute the program:
+4. Create a new executable file and execute the program:
     ```
     chmod +x create_executable
     ./create_executable.sh
@@ -65,11 +67,11 @@ You can costumize the items fields as you wish. In order to do that follow the n
 1. Run `nano ~/.bashrc`.
 2. Add at the end of the file: `alias app="/home/pi/Documents/project/Donate-It/rpi/main_app"`.
 3. Save and reboot.
-#### 2. Run The App Automatically When The RPi Turns On
+#### 2. Run The App Automatically When The RPi Turns On:
 1. Run `nano ~/.config/lxsession/LXDE-pi/autostart`
 2. Add the line `/home/pi/Documents/project/Donate-It/rpi/main_app`\
 ***Note:*** this file will run instead of the original RPi autostart command. In order to make your desktop appear make sure to add the following lines
-before the one you added in the last step:
+before the one you added in the previous step:
 ```
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
