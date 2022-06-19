@@ -3,8 +3,11 @@
 # the executable file will run automatically when rpi turnes on 
 #    and when you run the alias "app" on the terminal
 
+rm -r main_app_rpi_executable
 pyinstaller --onefile --noconsole rpi/main_app.py 
-cp dist/main_app rpi
 rm -r build
-rm -r dist
 rm main_app.spec
+mv dist main_app_rpi_executable
+echo "cd" $(pwd) >> main_app_rpi_executable/run_main_app.sh
+echo "./main_app_rpi_executable/main_app" >> main_app_rpi_executable/run_main_app.sh
+chmod +x main_app_rpi_executable/run_main_app.sh
