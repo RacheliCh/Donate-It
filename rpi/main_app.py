@@ -116,4 +116,4 @@ window_fields.close()
 
 my_camera.close()
 
-systemPowerOff()
+#systemPowerOff()

@@ -4,7 +4,7 @@ from firebase_admin import firestore
 
 def firestoreInitialize():
     global db
-    cred = firebase_admin.credentials.Certificate("/home/pi/Documents/project/Donate-It/rpi/DonateItServiceAccountKey.json")
+    cred = firebase_admin.credentials.Certificate("rpi/DonateItServiceAccountKey.json")
     firebase_admin.initialize_app(cred)
     db = firestore.client()
 

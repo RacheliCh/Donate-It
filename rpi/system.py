@@ -60,7 +60,7 @@ def systemPrintLabel(item_id, info):
         p.set(align="center", width=1, height=1)
         p.text("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         p.text("\n")
-        p.image("/home/pi/Documents/project/Donate-It/rpi/logo.png",impl="bitImageColumn")
+        p.image("rpi/logo.png",impl="bitImageColumn")
         p.text("\n")
         p.set(align="left", width=1, height=1, text_type="B")
         p.text("ITEM ID: " + item_id)

@@ -9,7 +9,7 @@ from yaml.loader import SafeLoader
 
 
 # Open the yaml file and load the data
-with open('/home/pi/Documents/project/Donate-It/rpi/items_config.yaml', 'r') as file:
+with open('rpi/items_config.yaml', 'r') as file:
     yaml_data = yaml.safe_load(file)
 
 ### gui layouts ###
