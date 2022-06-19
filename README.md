@@ -6,9 +6,9 @@ Secondhand Clothing – Made Easy
 ## Description
 This project aims to make donating and shopping for secondhand clothes easier.\
 After taking a picture of an item using a special stand, it will be automatically uploaded to an [online clothing catalog](https://donateit100.wixsite.com/donate-it).\
-The stand includes a touch screen and is not PC-based, so it simple to use by everyone.\
+The stand includes a touch screen and is not PC-based, so it is simple to use by everyone.\
 It is possible to customimze items' description fields - see instructions below.
-This project uses Google Cloud Firebase Database to store item images and information about it. The RPi uploads the image to Firebase Storage and uploads the information to Firebase Firestore. The website loads the images and the information from Firebase to it's own database and displays it in the store gallery.
+This project uses Google Cloud Firebase Database to store item images and information about it. The RPi uploads the image to Firebase Storage and uploads the information (the items' description fields) to Firebase Firestore. The website loads the images and the information from Firebase to it's own database and displays it in the store gallery.
 
 ## Hardware
 ### What You'll Need
@@ -55,7 +55,7 @@ You can costumize items' description fields as you wish. In order to do that fol
     source <name>/bin/activate
     ```
 3. Change the `items_config.yaml` file in `rpi` folder as you wish.\
-    ***Note:*** keep the files structure as is and do not change the `Type` and `Price` fields names.
+    ***Note:*** keep the files and folders structure as it is and do not change the `Type` and `Price` fields names.
 4. Create a new executable file and execute the program:
     ```
     chmod +x create_executable
