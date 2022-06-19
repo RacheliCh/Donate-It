@@ -33,11 +33,12 @@ This project uses Google Cloud Firebase Database to store item images and inform
    Make sure to give it the required permissions: `sudo chmod 777 /dev/usb/lp0`
 
 ## How To Run The App
-1. Download the `main_app` file (not main_app.py) in `rpi` folder.
+1. Clone this project to the Raspberry Pi.
 2. run:
     ```
-    chmod +777 main_app
-    <path_to_the_file>/main_app
+    cd <path_to_the_root_folder_of_the_cloned_project>
+    chmod +x main_app_rpi_executable/run_main_app.sh
+    ./main_app_rpi_executable/run_main_app.sh
     ```
 
 ## Customize Items' Description Fields
@@ -47,13 +48,13 @@ You can costumize items' description fields as you wish. In order to do that fol
     ```
     pip install -r requirements.txt
     ```
-    ***Recommended:*** use a virtual environment, to do so run the following:
+    ***Recommended:*** use a virtual environment, to do so run the following from root folder:
     ```
     pip install virtualenv
     virtualenv <name>
     source <name>/bin/activate
     ```
-3. Change the `items_config.yaml` file as you wish.\
+3. Change the `items_config.yaml` file in `rpi` folder as you wish.\
     ***Note:*** keep the files structure as is and do not change the `Type` and `Price` fields names.
 4. Create a new executable file and execute the program:
     ```
@@ -64,19 +65,19 @@ You can costumize items' description fields as you wish. In order to do that fol
     
 ## Create Shortcuts For Running The App
 #### 1. Create an alias for the bash terminal:
-1. Run `nano ~/.bashrc`.
-2. Add at the end of the file: `alias app="/home/pi/Documents/project/Donate-It/rpi/main_app"`.
+1. Run `nano ~/.bashrc`
+2. Add at the end of the file: `alias app="<path>/main_app_rpi_executable/run_main_app.sh"`
 3. Save and reboot.
-#### 2. Run The App Automatically When The RPi Turns On:
+#### 2. Run the app automatically when the RPi turns on:
 1. Run `nano ~/.config/lxsession/LXDE-pi/autostart`
-2. Add the line `/home/pi/Documents/project/Donate-It/rpi/main_app`\
+2. Add the line `<path>/main_app_rpi_executable/run_main_app.sh`\
 ***Note:*** this file will run instead of the original RPi autostart command. In order to make your desktop appear make sure to add the following lines
 before the one you added in the previous step:
-```
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-@xscreensaver -no-splash
-```
+    ```
+    @lxpanel --profile LXDE-pi
+    @pcmanfm --desktop --profile LXDE-pi
+    @xscreensaver -no-splash
+    ```
 3. Save and reboot.
     
 ## Our website
