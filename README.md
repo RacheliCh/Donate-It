@@ -21,7 +21,7 @@ This project uses Google Cloud Firebase Database to store item images and inform
 
 ### Connecting Everything
 1. Install Raspberry Pi OS: use this [link](https://www.raspberrypi.com/documentation/computers/getting-started.html) for full instructions.
-2. Install on-screen keyboard on Raspberry Pi:\
+2. Install on-screen keyboard on Raspberry Pi:
     ```
     sudo apt-get update
     sudo apt-get install matchbox-keyboard
@@ -42,7 +42,7 @@ This project uses Google Cloud Firebase Database to store item images and inform
 
 ## Customize Items' Description Fields
 You can costumize items' description fields as you wish. In order to do that follow the next steps:
-1. Clone this project to a the local path /home/pi/Documents/project/Donate-It on the Raspberry Pi.
+1. Clone this project to the Raspberry Pi.
 2. Install the python requirements. To do so run the following:
     ```
     pip install -r requirements.txt
