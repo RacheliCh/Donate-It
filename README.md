@@ -3,6 +3,8 @@
 \
 Secondhand Clothing – Made Easy
 
+<img src="https://github.com/RacheliCh/Donate-It/blob/main/website/donateItLogo.png"  width="200" height="200">
+
 ## Description
 This project aims to make donating and shopping for secondhand clothes easier.\
 After taking a picture of an item using a special stand, it will be automatically uploaded to an [online clothing catalog](https://donateit100.wixsite.com/donate-it).\
