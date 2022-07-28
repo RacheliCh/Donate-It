@@ -7,8 +7,8 @@ from escpos.printer import *
 from firebase_storage import *
 
 def systemSetTime():
-    # TODO: add exception if no wifi
     res = urlopen('http://just-the-time.appspot.com/')
+    # if there is no wifi the code will stop here and nothing will appear on screen
     result = res.read().strip()
     result_str = result.decode('utf-8')
     day = result_str[8:10]
