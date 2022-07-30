@@ -29,7 +29,8 @@ In the admin section you can delete items (using the password: 1234)
 6. 4 Jampers
 
 ### Connecting Everything
-1. Install Raspberry Pi OS: use this [link](https://www.raspberrypi.com/documentation/computers/getting-started.html) for full instructions.
+1. Install Raspberry Pi OS: use this [link](https://www.raspberrypi.com/documentation/computers/getting-started.html) for full instructions.\
+    ***Tip:*** you can install this [full img](https://technionmail-my.sharepoint.com/:u:/g/personal/dinaa_campus_technion_ac_il/ETiihww7sGdDnP58E20EWwEBvLviNZjCQuihiGTzLFt-cQ?e=AcQFBO) we used during development process, it includes everything you need to run the project.
 2. Install on-screen keyboard on Raspberry Pi:
     ```
     sudo apt-get update
